@@ -1,13 +1,16 @@
 package com.credit.simulation.models.entity;
 
+import com.sun.istack.NotNull;
+
 import java.math.BigDecimal;
 
 public class SimuladorRq {
+    @NotNull
     private String dni;
     private String tarjeta;
     private String moneda;
-    private Double monto;
-    private Double cuota;
+    private double monto;
+    private int cuota;
     private String tea;
     private String diaPago;
 
@@ -35,19 +38,19 @@ public class SimuladorRq {
         this.moneda = moneda;
     }
 
-    public Double getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(Double monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
-    public Double getCuota() {
+    public int getCuota() {
         return cuota;
     }
 
-    public void setCuota(Double cuota) {
+    public void setCuota(int cuota) {
         this.cuota = cuota;
     }
 

@@ -39,9 +39,9 @@ INSERT INTO parametro(familia, producto) VALUES ('Cuotas', '35');
 INSERT INTO parametro(familia, producto) VALUES ('Cuotas', '36');
 INSERT INTO parametro(familia, producto) VALUES ('DiasPago', '5');
 INSERT INTO parametro(familia, producto) VALUES ('DiasPago', '20');
-INSERT INTO parametro(familia, producto) VALUES ('TEA', '99.90');
-INSERT INTO parametro(familia, producto) VALUES ('TEA', '95.90');
-INSERT INTO parametro(familia, producto) VALUES ('TEA', '90.90');
+INSERT INTO parametro(familia, producto) VALUES ('TEA', '99.90%');
+INSERT INTO parametro(familia, producto) VALUES ('TEA', '95.90%');
+INSERT INTO parametro(familia, producto) VALUES ('TEA', '90.90%');
 
 INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('10602933', 'Jim', 'Morrison', 'jim.morrison@gmail.com');
 INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('30102931', 'Marco', 'Vito', 'Marco.Vito@gmail.com');
