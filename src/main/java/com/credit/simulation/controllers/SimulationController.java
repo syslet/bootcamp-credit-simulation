@@ -26,48 +26,48 @@ public class SimulationController {
     private IPersonaService personaService;
 
 
-    @GetMapping("/parametro/listar")
+    @GetMapping(Constants.URI_RESOURCE_PARAMETER_LIST)
     public List<Parametro> parametroListar() {
         return  paranetroService.search(SearchType.BY_ALL, "");
     }
 
-    @GetMapping("/parametro/tarjetas")
+    @GetMapping(Constants.URI_RESOURCE_PARAMETER_CARDS)
     public List<Parametro> parametroTarjetas() {
         return  paranetroService.search(SearchType.BY_FAMILY_NAME, "Tarjetas");
     }
 
-    @GetMapping("/parametro/cuotas")
+    @GetMapping(Constants.URI_RESOURCE_PARAMETER_FEE)
     public List<Parametro> parametroCuotas() {
         return  paranetroService.search(SearchType.BY_FAMILY_NAME, "Cuotas");
     }
 
-    @GetMapping("/parametro/diaspago")
+    @GetMapping(Constants.URI_RESOURCE_PARAMETER_PAYDAY)
     public List<Parametro> parametroDiasPago() {
         return  paranetroService.search(SearchType.BY_FAMILY_NAME, "DiasPago");
     }
 
-    @GetMapping("/parametro/tea")
+    @GetMapping(Constants.URI_RESOURCE_PARAMETER_RATE)
     public List<Parametro> parametroTEA() {
         return  paranetroService.search(SearchType.BY_FAMILY_NAME, "TEA");
     }
 
 
-    @GetMapping("/parametro/{id}")
+    @GetMapping(Constants.URI_RESOURCE_PARAMETER_ID)
     public List<Parametro> parametroDetalle(@PathVariable Long id) {
         return paranetroService.search(SearchType.BY_ID, id.toString());
     }
 
-    @GetMapping("/parametro/producto/{prod}")
+    @GetMapping(Constants.URI_RESOURCE_PARAMETER_PRODUCT)
     public List<Parametro> parametroProductoDetalle(@PathVariable String prod) {
         return paranetroService.search(SearchType.BY_PRODUCT_NAME, prod);
     }
 
-    @GetMapping("/persona/listar")
+    @GetMapping(Constants.URI_RESOURCE_PERSON_LIST)
     public List<Persona> personaListar() {
         return personaService.search(SearchType.BY_ALL, "");
     }
 
-    @GetMapping("/persona/dni/{dni}")
+    @GetMapping(Constants.URI_RESOURCE_PERSON_DNI)
     public List<Persona> personaDetalle(@PathVariable String dni) {
         return personaService.search(SearchType.BY_DNI, dni);
     }
@@ -78,8 +78,7 @@ public class SimulationController {
     }
 
 
-
-    @PostMapping(value = "/simula-credito",
+    @PostMapping(value = Constants.URI_RESOURCE_CREDIT_SIMULATION,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<SimuladorRs> simulaCredito(@RequestBody SimuladorRq simuladorRq) {

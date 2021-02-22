@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "2eca0c72-3a09-41ba-ad1c-be159389143d",
+		"name": "BOOTCAMP-RETO1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PARAMETROS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parametro/cuotas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parametro",
+						"cuotas"
+					]
+				},
+				"description": "LISTA DE DATOS\nTarjeta:\n• Clásica\n• Oro\n• Black\n\nCuotas:\n• de 1 a 36\n\nDías de Pago:\n• 5\n• 20\n\nTEA:\n• 99.90%\n• 95.90%\n• 90.90%"
+			},
+			"response": []
+		},
+		{
+			"name": "PERSONAS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persona/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persona",
+						"listar"
+					]
+				},
+				"description": "LISTA DE DATOS\nTarjeta:\n• Clásica\n• Oro\n• Black\n\nCuotas:\n• de 1 a 36\n\nDías de Pago:\n• 5\n• 20\n\nTEA:\n• 99.90%\n• 95.90%\n• 90.90%"
+			},
+			"response": []
+		},
+		{
+			"name": "Simulador de compras",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dni\": \"10602933\",\n    \"tarjeta\": \"CLASICA\",\n    \"moneda\": \"S/\",\n    \"monto\": 5662,\n    \"cuota\": 13,\n    \"tea\": \"99.90%\",\n    \"diaPago\": \"20\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/simula-credito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"simula-credito"
+					]
+				},
+				"description": "Simulador de compras"
+			},
+			"response": []
+		}
+	]
+}
