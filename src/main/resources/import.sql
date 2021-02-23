@@ -43,8 +43,9 @@ INSERT INTO parametro(familia, producto) VALUES ('TEA', '99.90%');
 INSERT INTO parametro(familia, producto) VALUES ('TEA', '95.90%');
 INSERT INTO parametro(familia, producto) VALUES ('TEA', '90.90%');
 
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('10602933', 'Jim', 'Morrison', 'jim.morrison@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('30102931', 'Marco', 'Vito', 'Marco.Vito@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('30622937', 'Pedro', 'Pecaldri', 'Pedro.Pecaldri@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('70007630', 'Maria', 'Rambosi', 'Maria.Rambosi@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('50605936', 'Camilo', 'Trason', 'Camilo.Trason@gmail.com');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('10602933', 'Jim', 'Morrison', 'jim.morrison@gmail.com', 'Clasica');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('30102931', 'Marco', 'Vito', 'Marco.Vito@gmail.com', 'Oro');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('30622937', 'Pedro', 'Pecaldri', 'Pedro.Pecaldri@gmail.com', 'Black');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('70007630', 'Maria', 'Rambosi', 'Maria.Rambosi@gmail.com', 'Clasica');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('50605936', 'Camilo', 'Trason', 'Camilo.Trason@gmail.com', 'Oro');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('190605936', 'Pepe', 'Martan', 'Pepe.Martan@gmail.com', 'Black');

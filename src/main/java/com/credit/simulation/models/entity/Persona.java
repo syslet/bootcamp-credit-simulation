@@ -21,6 +21,9 @@ public class Persona {
     @Column(name = "correo")
     private String correo;
 
+    @Column(name = "tarjeta")
+    private String tarjeta;
+
     public Long getId() {
         return Id;
     }
@@ -59,5 +62,13 @@ public class Persona {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
     }
 }
