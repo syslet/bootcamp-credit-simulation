@@ -3,6 +3,7 @@ package com.credit.simulation.models.util;
 public class Constants {
     public static final String RESULT_OK = "EXITOSO";
     public static final String ERROR_DNI_NOT_FOUND = "ERROR - DNI DE CLIENTE NO EXISTE";
+    public static final String ERROR_DNI_CARD_NOT_VALID = "ERROR - LA TARJETA DEL CLIENTE NO CORRESPONDE";
     public static final String ERROR_CARD_NOT_FOUND = "ERROR - TIPO DE TARJETA NO EXISTE [Clasica, Oro, Black]";
     public static final String ERROR_MONEY_NOT_FOUND = "ERROR - TIPO DE MONEDA NO EXISTE [S/]";
     public static final String ERROR_FEE_NOT_FOUND = "ERROR - TIPO DE CUOTA NO PARAMETRIZADA [1 a 36]";
@@ -35,6 +36,7 @@ public class Constants {
     public static final String FAMILY_PAYDAY = "DiasPago";
     public static final String FAMILY_RATE = "TEA";
 
+    public static final String FORMAT_DATE = "yyyy-MM-dd";
 
 
 

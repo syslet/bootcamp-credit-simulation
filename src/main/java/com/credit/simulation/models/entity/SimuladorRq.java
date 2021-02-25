@@ -13,6 +13,7 @@ public class SimuladorRq {
     private int cuota;
     private String tea;
     private String diaPago;
+    private String fechaComrpa;
 
     public String getDni() {
         return dni;
@@ -68,5 +69,13 @@ public class SimuladorRq {
 
     public void setDiaPago(String diaPago) {
         this.diaPago = diaPago;
+    }
+
+    public String getFechaComrpa() {
+        return fechaComrpa;
+    }
+
+    public void setFechaComrpa(String fechaComrpa) {
+        this.fechaComrpa = fechaComrpa;
     }
 }

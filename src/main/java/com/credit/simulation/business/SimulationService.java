@@ -5,25 +5,38 @@ import com.credit.simulation.models.entity.Persona;
 import com.credit.simulation.models.entity.SimuladorRq;
 import com.credit.simulation.models.entity.SimuladorRs;
 import com.credit.simulation.models.util.Constants;
+import com.credit.simulation.models.util.ResultPersonType;
+import com.credit.simulation.models.util.SearchType;
+import org.springframework.beans.factory.support.ScopeNotActiveException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
+
 
 public class SimulationService {
     public SimuladorRs creditSimulation (SimuladorRq request) {
         SimuladorRs response = new SimuladorRs();
-        String dni = request.getDni();
-        String tarjeta = request.getTarjeta();
         String moneda = request.getMoneda();
 
         if (validRequest(request, response)){
             double pagoMensual = getPagoMensual(request.getMonto(), request.getCuota(), request.getTea());
+            pagoMensual = Math.round(pagoMensual*100)/100;
+
+            Date fechaCompra = null;
+            try {
+                fechaCompra = new SimpleDateFormat(Constants.FORMAT_DATE).parse(request.getFechaComrpa());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             Calendar fechaPrimeraCuota = Calendar.getInstance();
+            fechaPrimeraCuota.setTime(fechaCompra);
             fechaPrimeraCuota.add(Calendar.MONTH, 1);
-
-            pagoMensual = Math.round(pagoMensual*100)/100;
+            fechaPrimeraCuota.set( Calendar.DAY_OF_MONTH, Integer.parseInt(request.getDiaPago()));
 
             response.setEstado(Constants.RESULT_OK);
             response.setMoneda(moneda);
@@ -35,7 +48,7 @@ public class SimulationService {
 
     private String formatearCalendar(Calendar c) {
         Date fecha = c.getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat(Constants.FORMAT_DATE);
         String fechaTexto = formatter.format(fecha);
         return fechaTexto;
     }
@@ -48,15 +61,20 @@ public class SimulationService {
     }
 
     private boolean validRequest(SimuladorRq request, SimuladorRs response) {
-        //1. Validar que el Cliente Exista en la BD
-        if (!validPersona(request.getDni())) {
-            response.setEstado(Constants.ERROR_DNI_NOT_FOUND);
+
+        //1. Validamos el Tipo de Tarjeta
+        if (!validParametro(request.getTarjeta(), Constants.FAMILY_CARDS)) {
+            response.setEstado(Constants.ERROR_CARD_NOT_FOUND);
             return false;
         }
 
-        //2. Validamos el Tipo de Tarjeta
-        if (!validParametro(request.getTarjeta(), Constants.FAMILY_CARDS)) {
-            response.setEstado(Constants.ERROR_CARD_NOT_FOUND);
+        //2. Validar que el Cliente Exista en la BD
+        ResultPersonType resultPersonType = validPersona(request.getDni(), request.getTarjeta());
+        if (resultPersonType == ResultPersonType.ERROR_CARD) {
+            response.setEstado(Constants.ERROR_DNI_CARD_NOT_VALID);
+            return false;
+        } else if (resultPersonType == ResultPersonType.ERROR_DNI) {
+            response.setEstado(Constants.ERROR_DNI_NOT_FOUND);
             return false;
         }
 
@@ -87,14 +105,20 @@ public class SimulationService {
         return true;
     }
 
-    private Boolean validPersona(String dni) {
+    private ResultPersonType validPersona(String dni, String tarjeta) {
         RestTemplate restTemplate = new RestTemplate();
         String url = Constants.URI_PERSON_BY_DNI + dni;
         ResponseEntity<Persona[]> personas = restTemplate.getForEntity(url, Persona[].class);
         if (personas.getBody().length == 0) {
-            return false;
+            return ResultPersonType.ERROR_DNI;
         }
-        return true;
+        else {
+            Persona persona = personas.getBody()[0];
+            if (!persona.getTarjeta().toLowerCase().equals(tarjeta.toLowerCase())) {
+                return ResultPersonType.ERROR_CARD;
+            }
+        }
+        return ResultPersonType.OK;
     }
 
     private Boolean validParametro(String param, String family) {

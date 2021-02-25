@@ -7,3 +7,4 @@ public enum SearchType {
     BY_PRODUCT_NAME,
     BY_DNI
 }
+

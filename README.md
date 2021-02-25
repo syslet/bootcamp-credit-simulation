@@ -51,6 +51,7 @@ Response:
         "nombre": "Jim",
         "apellido": "Morrison",
         "correo": "jim.morrison@gmail.com",
+        "tarjeta": "Clasica",
         "id": 1
     },
     {
@@ -58,6 +59,7 @@ Response:
         "nombre": "Marco",
         "apellido": "Vito",
         "correo": "Marco.Vito@gmail.com",
+        "tarjeta": "Oro",
         "id": 2
     },
     {
@@ -65,6 +67,7 @@ Response:
         "nombre": "Pedro",
         "apellido": "Pecaldri",
         "correo": "Pedro.Pecaldri@gmail.com",
+        "tarjeta": "Black",
         "id": 3
     },
     {
@@ -72,6 +75,7 @@ Response:
         "nombre": "Maria",
         "apellido": "Rambosi",
         "correo": "Maria.Rambosi@gmail.com",
+        "tarjeta": "Clasica",
         "id": 4
     },
     {
@@ -79,7 +83,16 @@ Response:
         "nombre": "Camilo",
         "apellido": "Trason",
         "correo": "Camilo.Trason@gmail.com",
+        "tarjeta": "Oro",
         "id": 5
+    },
+    {
+        "dni": "190605936",
+        "nombre": "Pepe",
+        "apellido": "Martan",
+        "correo": "Pepe.Martan@gmail.com",
+        "tarjeta": "Black",
+        "id": 6
     }
 ]
 ```
@@ -97,14 +110,15 @@ Request:
     "monto": 5662,
     "cuota": 13,
     "tea": "99.90%",
-    "diaPago": "20"
+    "diaPago": "20",
+    "fechaComrpa": "2021-03-23"
 }
 
 Response:
 {
     "cuota": "729.0",
     "moneda": "S/",
-    "primeraCuota": "22/03/2021",
+    "primeraCuota": "2021-04-20",
     "estado": "EXITOSO"
 }
 
@@ -163,9 +177,10 @@ INSERT INTO parametro(familia, producto) VALUES ('TEA', '90.90%');
 
 Tabla: [persona]
 ```
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('10602933', 'Jim', 'Morrison', 'jim.morrison@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('30102931', 'Marco', 'Vito', 'Marco.Vito@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('30622937', 'Pedro', 'Pecaldri', 'Pedro.Pecaldri@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('70007630', 'Maria', 'Rambosi', 'Maria.Rambosi@gmail.com');
-INSERT INTO persona(dni, nombre, apellido, correo) VALUES ('50605936', 'Camilo', 'Trason', 'Camilo.Trason@gmail.com');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('10602933', 'Jim', 'Morrison', 'jim.morrison@gmail.com', 'Clasica');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('30102931', 'Marco', 'Vito', 'Marco.Vito@gmail.com', 'Oro');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('30622937', 'Pedro', 'Pecaldri', 'Pedro.Pecaldri@gmail.com', 'Black');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('70007630', 'Maria', 'Rambosi', 'Maria.Rambosi@gmail.com', 'Clasica');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('50605936', 'Camilo', 'Trason', 'Camilo.Trason@gmail.com', 'Oro');
+INSERT INTO persona(dni, nombre, apellido, correo, tarjeta) VALUES ('190605936', 'Pepe', 'Martan', 'Pepe.Martan@gmail.com', 'Black');
 ```
