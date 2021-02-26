@@ -7,6 +7,47 @@ https://github.com/syslet/bootcamp-credit-simulation.git
 Camper: Rene Plaz Cabrera
 
 
+Formula
+-----------------------------------------------
+```
+Tasa Efectiva Mensual
+TEM = (1 + TEA)^(30/360) - 1
+
+Factor de Recuperación de Capital
+FRC =  TEM * (1 + TEM)^n / (1 + TEM)^n - 1
+
+Cálculo de Cuota
+CUOTA = MONTO * FRC 
+```
+
+
+EndPoints de Simulación de Crédito
+-----------------------------------------------
+```
+[POST]: (http://localhost:8080/simula-credito)
+
+Request:
+{
+    "dni": "10602933",
+    "tarjeta": "CLASICA",
+    "moneda": "S/",
+    "monto": 10000,
+    "cuota": 12,
+    "tea": "90.90%",
+    "diaPago": "20",
+    "fechaComrpa": "2021-03-23"
+}
+
+Response:
+{
+    "cuota": "1162.61",
+    "moneda": "S/",
+    "primeraCuota": "2021-04-20",
+    "estado": "EXITOSO"
+}
+
+```
+
 
 EndPoints de Objeto Parametros
 -----------------------------------------------
@@ -97,32 +138,6 @@ Response:
 ]
 ```
 
-EndPoints de Simulación de Crédito
------------------------------------------------
-```
-[POST]: http://localhost:8080/simula-credito
-
-Request:
-{
-    "dni": "10602933",
-    "tarjeta": "CLASICA",
-    "moneda": "S/",
-    "monto": 5662,
-    "cuota": 13,
-    "tea": "99.90%",
-    "diaPago": "20",
-    "fechaComrpa": "2021-03-23"
-}
-
-Response:
-{
-    "cuota": "729.0",
-    "moneda": "S/",
-    "primeraCuota": "2021-04-20",
-    "estado": "EXITOSO"
-}
-
-```
 
 
 Carga de Parámetros

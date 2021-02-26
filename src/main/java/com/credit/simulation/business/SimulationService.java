@@ -6,14 +6,11 @@ import com.credit.simulation.models.entity.SimuladorRq;
 import com.credit.simulation.models.entity.SimuladorRs;
 import com.credit.simulation.models.util.Constants;
 import com.credit.simulation.models.util.ResultPersonType;
-import com.credit.simulation.models.util.SearchType;
-import org.springframework.beans.factory.support.ScopeNotActiveException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -23,8 +20,8 @@ public class SimulationService {
         String moneda = request.getMoneda();
 
         if (validRequest(request, response)){
-            double pagoMensual = getPagoMensual(request.getMonto(), request.getCuota(), request.getTea());
-            pagoMensual = Math.round(pagoMensual*100)/100;
+            Double pagoMensual = getPagoMensual(request.getMonto(), request.getCuota(), request.getTea());
+            pagoMensual = Math.round(pagoMensual*100.00)/100.00;
 
             Date fechaCompra = null;
             try {
@@ -40,7 +37,7 @@ public class SimulationService {
 
             response.setEstado(Constants.RESULT_OK);
             response.setMoneda(moneda);
-            response.setCuota( String.valueOf(pagoMensual) );
+            response.setCuota(String.valueOf(pagoMensual) );
             response.setPrimeraCuota(formatearCalendar(fechaPrimeraCuota));
         }
         return response;
@@ -53,10 +50,12 @@ public class SimulationService {
         return fechaTexto;
     }
 
-    private double getPagoMensual(double montoInicial, int plazoMeses, String tasaAnualS) {
-        double tasaAnual = Double.parseDouble(tasaAnualS.replace("%", ""));
-        double tasaMensual = tasaAnual / (12*100);
-        double pagoMensual = montoInicial * (tasaMensual / (1 - Math.pow((1 + tasaMensual), (plazoMeses * -1))));
+    private Double getPagoMensual(Double montoInicial, int plazoMeses, String tasaAnualS) {
+        Double tasaTEA = Double.parseDouble(tasaAnualS.replace("%", ""));
+        tasaTEA = tasaTEA / 100.00;
+        Double tasaTEM =  Math.pow(1 + tasaTEA, 30.0/360.0) - 1;
+        Double factorFRC = (tasaTEM * Math.pow(1 + tasaTEM, plazoMeses)) / (Math.pow(1 + tasaTEM, plazoMeses) - 1);
+        Double pagoMensual = montoInicial * factorFRC;
         return pagoMensual;
     }
 
